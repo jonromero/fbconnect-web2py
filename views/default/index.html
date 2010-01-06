@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+  <title>Facebook Connect in web2py</title>
+</head>
+<body>
+
+<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
+<div id="user">
+  <fb:login-button length='long' onlogin="update_user_box();"></fb:login-button>
+</div>
+
+<script type="text/javascript">
+  function update_user_box() {
+    var user_box = document.getElementById("user");
+  
+     user_box.innerHTML =
+     "<span>"
+     + "<fb:profile-pic uid='loggedinuser' facebook-logo='true'></fb:profile-pic>"
+     + "Welcome, <fb:name uid='loggedinuser' useyou='false'></fb:name>"
+     + "</span>" 
+     + '<br /><a href="#" onclick="FB.Connect.logout();" ><img id="fb_logout_image" src="http://static.ak.fbcdn.net/images/fbconnect/logout-buttons/logout_small.gif" alt="Connect"/></a>';
+
+     FB.XFBML.Host.parseDomTree();
+  }
+</script>
+
+
+<script type="text/javascript">
+    var api_key = '{{=api_key}}';
+    var channel_path = "{{=URL(request.application,'static','xd_receiver.htm')}}";
+    FB.init(api_key, channel_path);
+	FB.ensureInit(function () {
+	      FB.Connect.ifUserConnected(update_user_box, null);
+	});
+</script>
+<br />
+<br />
+Download web2py pak file from <a href="http://emotionull.com/blog_files/web2py.app.fbconnect.w2p">here</a> <br />
+<small>read for updates at <a href="http://jon.is.emotionull.com">jon.is.emotionull.com</a></small> <br />
+<img src="http://web2py.com/examples/static/powered_by/web2py_sticker_99963d.png" />
+</body>
+</html>

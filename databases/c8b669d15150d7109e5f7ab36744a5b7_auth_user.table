@@ -1,0 +1,26 @@
+(dp1
+S'first_name'
+p2
+S'CHAR(128)'
+p3
+sS'last_name'
+p4
+S'CHAR(128)'
+p5
+sS'email'
+p6
+S'CHAR(128)'
+p7
+sS'password'
+p8
+S'CHAR(32)'
+p9
+sS'registration_key'
+p10
+S'CHAR(128)'
+p11
+sS'id'
+p12
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p13
+s.

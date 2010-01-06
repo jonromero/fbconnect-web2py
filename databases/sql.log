@@ -1,0 +1,43 @@
+timestamp: 2010-01-06T03:21:22.897684
+CREATE TABLE auth_user(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	first_name CHAR(128),
+	last_name CHAR(128),
+	email CHAR(128),
+	password CHAR(32),
+	registration_key CHAR(128)
+);
+success!
+timestamp: 2010-01-06T03:21:22.911940
+CREATE TABLE auth_group(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	role CHAR(128),
+	description TEXT
+);
+success!
+timestamp: 2010-01-06T03:21:22.929276
+CREATE TABLE auth_membership(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	user_id REFERENCES auth_user(id) ON DELETE CASCADE,
+	group_id REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2010-01-06T03:21:22.944454
+CREATE TABLE auth_permission(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	group_id REFERENCES auth_group(id) ON DELETE CASCADE,
+	name CHAR(32),
+	table_name CHAR(32),
+	record_id INTEGER
+);
+success!
+timestamp: 2010-01-06T03:21:22.963098
+CREATE TABLE auth_event(
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	time_stamp TIMESTAMP,
+	client_ip CHAR(32),
+	user_id REFERENCES auth_user(id) ON DELETE CASCADE,
+	origin CHAR(32),
+	description TEXT
+);
+success!
